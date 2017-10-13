@@ -117,7 +117,7 @@ describe Rack::JSONP do
       let(:callback) {'foo'}
       let(:app) { lambda { |env| [200, {'Content-Type' => 'application/json'}, ['{"bar":"foo"}']] } }
       let(:request) { Rack::MockRequest.env_for("/", :params => "foo=bar&callback=#{callback}") }
-      subject {Rack::JSONP.new(app).call(request)[1]['Content-Type-Options']}
+      subject {Rack::JSONP.new(app).call(request)[1]['X-Content-Type-Options']}
 
       it { should == 'nosniff' }
     end

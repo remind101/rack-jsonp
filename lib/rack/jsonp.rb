@@ -38,7 +38,7 @@ module Rack
 
       if callback && callback =~ @callback_regex && headers['Content-Type'] =~ /json/i
         response = pad(callback, response)
-        headers['Content-Type-Options'] = 'nosniff'
+        headers['X-Content-Type-Options'] = 'nosniff'
         headers['Content-Length'] = response.first.bytesize.to_s
         headers['Content-Type'] = 'application/javascript'
       elsif @carriage_return && headers['Content-Type'] =~ /json/i
